@@ -1,73 +1,70 @@
-# Welcome to your Lovable project
 
-## Project info
+# Device Fingerprint Viewer
 
-**URL**: https://lovable.dev/projects/65a0c01a-e513-4773-be16-2210367db8ad
+## Overview
 
-## How can I edit this code?
+Device Fingerprint Viewer is a modern, responsive web application that reveals the identifiable information your browser shares with websites. This client-side app provides comprehensive insights into your device's unique characteristics.
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- 🌐 IP Address & Geolocation Lookup
+- 🌈 Comprehensive Browser Information
+- 💻 Detailed Operating System & Platform Details
+- 🖥️ Screen and Display Characteristics
+- 🌍 Language and Timezone Information
+- 🔒 Browser Feature Detection
+- 🔋 Battery Status Tracking
+- 🕵️ WebRTC Local IP Detection
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/65a0c01a-e513-4773-be16-2210367db8ad) and start prompting.
+## Technologies Used
 
-Changes made via Lovable will be committed automatically to this repo.
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- WebRTC
+- Public IP Geolocation API
 
-**Use your preferred IDE**
+## Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Node.js (v18+)
+- npm or bun
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+# Clone the repository
+git clone https://github.com/DebdootManna/browser-whisperer-reveal.git
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to the project directory
+cd browser-whisperer-reveal
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Deployment
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The app is deployment-ready and can be easily deployed to platforms like Vercel with no additional server setup required.
 
-**Use GitHub Codespaces**
+## Privacy Notice
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+This application is designed to demonstrate browser fingerprinting techniques. The data collected is processed client-side and not stored or transmitted.
 
-## What technologies are used for this project?
+## Contributing
 
-This project is built with:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## License
 
-## How can I deploy this project?
+[Specify your license here]
 
-Simply open [Lovable](https://lovable.dev/projects/65a0c01a-e513-4773-be16-2210367db8ad) and click on Share -> Publish.
+## Disclaimer
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This tool is for educational purposes to help users understand digital fingerprinting. Always respect privacy and use responsibly.
+```
