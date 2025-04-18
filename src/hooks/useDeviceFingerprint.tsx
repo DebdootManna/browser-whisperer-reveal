@@ -204,7 +204,7 @@ export const useDeviceFingerprint = () => {
     })(),
     audioSupport: (() => {
       try {
-        return !!(window.AudioContext || window.webkitAudioContext);
+        return !!(window.AudioContext || window.AudioContext);
       } catch (e) {
         return false;
       }
@@ -216,10 +216,22 @@ export const useDeviceFingerprint = () => {
     const fetchIpInfo = async () => {
       setIpLoading(true);
       try {
-        const response = await fetch('https://ipinfo.io/json?token=15fcf5dae1f3a7');
+        // Using ipapi.co as an alternative API that doesn't need a token
+        const response = await fetch('https://ipapi.co/json/');
         if (!response.ok) throw new Error('Failed to fetch IP info');
         const data = await response.json();
-        setIpInfo(data);
+        
+        // Transform the response to match our IPInfo interface
+        setIpInfo({
+          ip: data.ip,
+          city: data.city,
+          region: data.region,
+          country: data.country_name,
+          org: data.org,
+          loc: `${data.latitude},${data.longitude}`,
+          timezone: data.timezone
+        });
+        
         setIpError(null);
       } catch (error) {
         console.error('Error fetching IP info:', error);
@@ -276,38 +288,72 @@ export const useDeviceFingerprint = () => {
 
   // WebRTC local IP detection
   useEffect(() => {
-    const getLocalIPs = () => {
-      const RTCPeerConnection = window.RTCPeerConnection || (window as any).webkitRTCPeerConnection || (window as any).mozRTCPeerConnection;
-      
-      if (!RTCPeerConnection) {
-        return;
-      }
-      
-      const pc = new RTCPeerConnection({
-        iceServers: [],
-      });
-      
-      pc.createDataChannel('');
-      pc.createOffer().then(offer => pc.setLocalDescription(offer));
-      
-      pc.onicecandidate = (e) => {
-        if (!e.candidate) return;
-        
-        const candidateStr = e.candidate.candidate;
-        const ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/;
-        const match = ipRegex.exec(candidateStr);
-        
-        if (match && match[1] !== '0.0.0.0') {
-          const ip = match[1];
-          if (!localIPs.includes(ip)) {
-            setLocalIPs(prev => [...prev, ip]);
-          }
+    const getLocalIPs = async () => {
+      try {
+        // Check if navigator.mediaDevices is available
+        if (!navigator.mediaDevices) {
+          console.log('WebRTC not supported in this browser');
+          return;
         }
-      };
+        
+        // Get media stream to activate WebRTC
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        
+        // Create RTCPeerConnection
+        const RTCPeerConnection = window.RTCPeerConnection || 
+                                 (window as any).webkitRTCPeerConnection || 
+                                 (window as any).mozRTCPeerConnection;
+        
+        if (!RTCPeerConnection) {
+          console.log('RTCPeerConnection not supported');
+          // Make sure to stop the stream
+          stream.getTracks().forEach(track => track.stop());
+          return;
+        }
+        
+        const pc = new RTCPeerConnection({
+          iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+        });
+        
+        // Add the media stream to the connection
+        stream.getTracks().forEach(track => pc.addTrack(track, stream));
+        
+        // Create a data channel
+        pc.createDataChannel('');
+        
+        // Create an offer and set local description
+        const offer = await pc.createOffer();
+        await pc.setLocalDescription(offer);
+        
+        // Listen for ICE candidates
+        pc.onicecandidate = (e) => {
+          if (!e.candidate) return;
+          
+          const candidateStr = e.candidate.candidate;
+          const ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/;
+          const match = ipRegex.exec(candidateStr);
+          
+          if (match && match[1] !== '0.0.0.0') {
+            const ip = match[1];
+            if (!localIPs.includes(ip)) {
+              setLocalIPs(prev => [...prev, ip]);
+            }
+          }
+        };
+        
+        // Clean up function
+        setTimeout(() => {
+          // Stop all tracks and close connection after 5 seconds
+          stream.getTracks().forEach(track => track.stop());
+          pc.close();
+        }, 5000);
+      } catch (error) {
+        console.error('Error getting local IPs:', error);
+      }
     };
     
     getLocalIPs();
-  }, [localIPs]);
+  }, []);
 
   // Font detection
   useEffect(() => {

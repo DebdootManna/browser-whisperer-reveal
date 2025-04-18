@@ -17,11 +17,11 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({ content }) => {
     <TooltipProvider>
       <Tooltip delayDuration={200}>
         <TooltipTrigger asChild>
-          <button className="outline-none">
+          <button className="outline-none ml-1 inline-flex">
             <HelpCircle className="w-3.5 h-3.5 text-muted-foreground hover:text-primary transition-colors" />
           </button>
         </TooltipTrigger>
-        <TooltipContent side="top" className="max-w-[280px] text-xs">
+        <TooltipContent side="top" className="max-w-[280px] text-xs bg-popover text-popover-foreground">
           <p>{content}</p>
         </TooltipContent>
       </Tooltip>
