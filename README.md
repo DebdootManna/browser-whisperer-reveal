@@ -67,4 +67,3 @@ MIT license
 ## Disclaimer
 
 This tool is for educational purposes to help users understand digital fingerprinting. Always respect privacy and use responsibly.
-```
