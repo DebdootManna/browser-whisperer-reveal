@@ -3,14 +3,14 @@ name: Update Browserslist Database
 on:
   schedule:
     # Run every Monday at 3:00 AM UTC
-    - cron: '0 3 * * 1'
+    - cron: "0 3 * * 1"
   workflow_dispatch: # Allow manual trigger
   push:
     branches:
       - main
     paths:
-      - 'package.json'
-      - 'package-lock.json'
+      - "package.json"
+      - "package-lock.json"
 
 jobs:
   update-browserslist:
@@ -29,14 +29,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
 
       - name: Update Browserslist DB
-        run: npx update-browserslist-db@latest
+        run: npm update caniuse-lite browserslist
         continue-on-error: false
 
       - name: Check for changes
@@ -49,8 +49,8 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore: update browserslist database'
-          title: '🤖 Update Browserslist Database'
+          commit-message: "chore: update browserslist database"
+          title: "🤖 Update Browserslist Database"
           body: |
             ## Automated Browserslist Database Update
 
@@ -70,10 +70,7 @@ jobs:
             **Related:** https://github.com/browserslist/update-db#readme
           branch: automated/update-browserslist
           delete-branch: true
-          labels: |
-            dependencies
-            automated
-            maintenance
+          labels: dependencies
 
       - name: Auto-merge if no conflicts
         if: steps.git-check.outputs.changed == 'true'
