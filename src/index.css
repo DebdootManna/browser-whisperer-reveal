@@ -4,33 +4,34 @@
 
 @layer base {
     :root {
-        --background: 222 47% 10%;
-        --foreground: 210 40% 98%;
+        /* Color Palette: #001524, #15616D, #FFECD1, #FF7D00, #78290F */
+        --background: 201 100% 7%; /* #001524 - Dark Blue Navy */
+        --foreground: 39 100% 92%; /* #FFECD1 - Cream (adjusted for better contrast) */
 
-        --card: 222 47% 12%;
-        --card-foreground: 210 40% 98%;
+        --card: 186 65% 26%; /* #15616D - Teal */
+        --card-foreground: 39 100% 92%; /* #FFECD1 - Cream */
 
-        --popover: 222 47% 12%;
-        --popover-foreground: 210 40% 98%;
+        --popover: 201 100% 10%; /* Slightly lighter than background */
+        --popover-foreground: 39 100% 92%; /* #FFECD1 - Cream */
 
-        --primary: 196 86% 46%;
-        --primary-foreground: 210 40% 98%;
+        --primary: 24 100% 50%; /* #FF7D00 - Bright Orange */
+        --primary-foreground: 201 100% 7%; /* Dark for contrast */
 
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
+        --secondary: 186 65% 26%; /* #15616D - Teal */
+        --secondary-foreground: 39 100% 92%; /* #FFECD1 - Cream */
 
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
+        --muted: 186 45% 22%; /* Darker Teal with less saturation */
+        --muted-foreground: 39 60% 75%; /* Muted Cream */
 
-        --accent: 262 83% 64%;
-        --accent-foreground: 210 40% 98%;
+        --accent: 24 100% 50%; /* #FF7D00 - Orange */
+        --accent-foreground: 201 100% 7%; /* Dark for contrast */
 
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
+        --destructive: 18 78% 26%; /* #78290F - Dark Brown */
+        --destructive-foreground: 39 100% 92%; /* #FFECD1 - Cream */
 
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 224.3 76.3% 48%;
+        --border: 186 50% 35%; /* Lighter Teal border */
+        --input: 186 65% 20%; /* Darker Teal input background */
+        --ring: 24 100% 50%; /* #FF7D00 - Orange focus ring */
 
         --radius: 0.75rem;
     }
@@ -43,6 +44,23 @@
 
     body {
         @apply bg-background text-foreground;
+        font-family:
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Jersey 25", sans-serif;
+        letter-spacing: 0.05em;
     }
 
     /* Custom scroll bar for dark theme */

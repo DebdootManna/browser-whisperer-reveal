@@ -1,8 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   Shield,
   Eye,
@@ -19,8 +25,8 @@ import {
   Volume2,
   Type,
   Network,
-  Monitor
-} from 'lucide-react';
+  Monitor,
+} from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -28,67 +34,68 @@ const Home = () => {
   const features = [
     {
       icon: Palette,
-      title: 'Canvas Fingerprinting',
-      description: 'Detect how your browser renders graphics uniquely'
+      title: "Canvas Fingerprinting",
+      description: "Detect how your browser renders graphics uniquely",
     },
     {
       icon: Cpu,
-      title: 'WebGL Analysis',
-      description: 'Identify your graphics card and driver information'
+      title: "WebGL Analysis",
+      description: "Identify your graphics card and driver information",
     },
     {
       icon: Volume2,
-      title: 'Audio Fingerprinting',
-      description: 'Test unique audio processing characteristics'
+      title: "Audio Fingerprinting",
+      description: "Test unique audio processing characteristics",
     },
     {
       icon: Type,
-      title: 'Font Detection',
-      description: 'Discover which fonts reveal your identity'
+      title: "Font Detection",
+      description: "Discover which fonts reveal your identity",
     },
     {
       icon: Network,
-      title: 'WebRTC Leak Test',
-      description: 'Check for IP address leaks through WebRTC'
+      title: "WebRTC Leak Test",
+      description: "Check for IP address leaks through WebRTC",
     },
     {
       icon: Monitor,
-      title: 'Screen & Hardware',
-      description: 'Analyze display and device characteristics'
+      title: "Screen & Hardware",
+      description: "Analyze display and device characteristics",
     },
     {
       icon: Globe,
-      title: 'Location & IP',
-      description: 'See your visible IP address and location'
+      title: "Location & IP",
+      description: "See your visible IP address and location",
     },
     {
       icon: Shield,
-      title: 'Privacy Score',
-      description: 'Get a comprehensive privacy protection rating'
-    }
+      title: "Privacy Score",
+      description: "Get a comprehensive privacy protection rating",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 relative z-10">
           <div className="text-center mb-12">
             <Badge className="mb-4" variant="outline">
               <Shield className="w-3 h-3 mr-1" />
               Privacy & Security Test
             </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
               Browser Fingerprint Test
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Discover what information your browser reveals to websites and how unique your digital fingerprint is
+              Discover what information your browser reveals to websites and how
+              unique your digital fingerprint is
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 size="lg"
-                onClick={() => navigate('/test')}
+                onClick={() => navigate("/test")}
                 className="text-lg px-8 py-6 h-auto group"
               >
                 <Fingerprint className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
@@ -98,7 +105,7 @@ const Home = () => {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() => navigate('/classic')}
+                onClick={() => navigate("/classic")}
                 className="text-lg px-8 py-6 h-auto"
               >
                 <Eye className="w-5 h-5 mr-2" />
@@ -139,31 +146,42 @@ const Home = () => {
               What is Browser Fingerprinting?
             </h2>
             <p className="text-lg text-muted-foreground mb-4">
-              Browser fingerprinting is a tracking technique that websites use to identify and track you online without cookies. It works by collecting information about your browser, device, and settings.
+              Browser fingerprinting is a tracking technique that websites use
+              to identify and track you online without cookies. It works by
+              collecting information about your browser, device, and settings.
             </p>
             <p className="text-lg text-muted-foreground mb-6">
-              Every browser has unique characteristics - from installed fonts and screen resolution to how it renders graphics. Combined, these create a unique "fingerprint" that can identify you across websites.
+              Every browser has unique characteristics - from installed fonts
+              and screen resolution to how it renders graphics. Combined, these
+              create a unique "fingerprint" that can identify you across
+              websites.
             </p>
             <div className="flex flex-col gap-3">
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium">Persistent Tracking</p>
-                  <p className="text-sm text-muted-foreground">Works even when cookies are blocked</p>
+                  <p className="text-sm text-muted-foreground">
+                    Works even when cookies are blocked
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <AlertTriangle className="w-6 h-6 text-orange-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium">Hard to Prevent</p>
-                  <p className="text-sm text-muted-foreground">Difficult to block without breaking websites</p>
+                  <p className="text-sm text-muted-foreground">
+                    Difficult to block without breaking websites
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Eye className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium">Invisible to Users</p>
-                  <p className="text-sm text-muted-foreground">No notification or indication when it happens</p>
+                  <p className="text-sm text-muted-foreground">
+                    No notification or indication when it happens
+                  </p>
                 </div>
               </div>
             </div>
@@ -185,7 +203,9 @@ const Home = () => {
                 </div>
                 <div>
                   <p className="font-medium">Browser & OS</p>
-                  <p className="text-sm text-muted-foreground">Type, version, and settings</p>
+                  <p className="text-sm text-muted-foreground">
+                    Type, version, and settings
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -194,7 +214,9 @@ const Home = () => {
                 </div>
                 <div>
                   <p className="font-medium">Canvas & WebGL</p>
-                  <p className="text-sm text-muted-foreground">Graphics rendering differences</p>
+                  <p className="text-sm text-muted-foreground">
+                    Graphics rendering differences
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -203,7 +225,9 @@ const Home = () => {
                 </div>
                 <div>
                   <p className="font-medium">Installed Fonts</p>
-                  <p className="text-sm text-muted-foreground">System fonts reveal your setup</p>
+                  <p className="text-sm text-muted-foreground">
+                    System fonts reveal your setup
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -212,7 +236,9 @@ const Home = () => {
                 </div>
                 <div>
                   <p className="font-medium">Hardware Details</p>
-                  <p className="text-sm text-muted-foreground">CPU, GPU, screen resolution</p>
+                  <p className="text-sm text-muted-foreground">
+                    CPU, GPU, screen resolution
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -226,7 +252,8 @@ const Home = () => {
               Comprehensive Fingerprint Analysis
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our tool tests multiple fingerprinting techniques to show exactly what websites can learn about you
+              Our tool tests multiple fingerprinting techniques to show exactly
+              what websites can learn about you
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -260,7 +287,8 @@ const Home = () => {
                   Understand Your Privacy
                 </h3>
                 <p className="text-muted-foreground">
-                  Learn what information your browser is exposing and how unique your fingerprint is compared to others.
+                  Learn what information your browser is exposing and how unique
+                  your fingerprint is compared to others.
                 </p>
               </div>
               <div>
@@ -269,7 +297,8 @@ const Home = () => {
                   Identify Vulnerabilities
                 </h3>
                 <p className="text-muted-foreground">
-                  Discover potential privacy leaks like WebRTC exposing your local IP address even when using a VPN.
+                  Discover potential privacy leaks like WebRTC exposing your
+                  local IP address even when using a VPN.
                 </p>
               </div>
               <div>
@@ -278,7 +307,8 @@ const Home = () => {
                   Get Protection Recommendations
                 </h3>
                 <p className="text-muted-foreground">
-                  Receive personalized suggestions on how to improve your privacy and reduce your fingerprint uniqueness.
+                  Receive personalized suggestions on how to improve your
+                  privacy and reduce your fingerprint uniqueness.
                 </p>
               </div>
               <div>
@@ -287,7 +317,8 @@ const Home = () => {
                   Test Your Protections
                 </h3>
                 <p className="text-muted-foreground">
-                  Verify that your privacy tools and browser settings are working effectively to protect you.
+                  Verify that your privacy tools and browser settings are
+                  working effectively to protect you.
                 </p>
               </div>
             </div>
@@ -306,19 +337,22 @@ const Home = () => {
             <div className="flex items-start gap-3">
               <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
               <p className="text-sm">
-                <strong>100% Client-Side:</strong> All tests run completely in your browser. Nothing is sent to our servers.
+                <strong>100% Client-Side:</strong> All tests run completely in
+                your browser. Nothing is sent to our servers.
               </p>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
               <p className="text-sm">
-                <strong>No Data Collection:</strong> We don't store, log, or transmit any of your fingerprint data.
+                <strong>No Data Collection:</strong> We don't store, log, or
+                transmit any of your fingerprint data.
               </p>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
               <p className="text-sm">
-                <strong>Open Source:</strong> Our code is transparent and available for review on GitHub.
+                <strong>Open Source:</strong> Our code is transparent and
+                available for review on GitHub.
               </p>
             </div>
           </CardContent>
@@ -326,13 +360,16 @@ const Home = () => {
 
         {/* CTA */}
         <div className="text-center mt-16">
-          <h2 className="text-3xl font-bold mb-4">Ready to Test Your Browser?</h2>
+          <h2 className="text-3xl font-bold mb-4">
+            Ready to Test Your Browser?
+          </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Find out how unique your browser fingerprint is and learn how to protect your privacy online
+            Find out how unique your browser fingerprint is and learn how to
+            protect your privacy online
           </p>
           <Button
             size="lg"
-            onClick={() => navigate('/test')}
+            onClick={() => navigate("/test")}
             className="text-lg px-8 py-6 h-auto group"
           >
             <Fingerprint className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
@@ -352,7 +389,8 @@ const Home = () => {
                 Browser Fingerprint Test
               </h3>
               <p className="text-sm text-muted-foreground">
-                A comprehensive tool to test and analyze your browser's fingerprint and privacy protections.
+                A comprehensive tool to test and analyze your browser's
+                fingerprint and privacy protections.
               </p>
             </div>
             <div>
@@ -408,17 +446,21 @@ const Home = () => {
                   </a>
                 </li>
                 <li>
-                  <span className="text-muted-foreground">Made with privacy in mind</span>
+                  <span className="text-muted-foreground">
+                    Made with privacy in mind
+                  </span>
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t pt-6 text-center text-sm text-muted-foreground">
             <p>
-              © {new Date().getFullYear()} Browser Fingerprint Test. All tests run client-side. No data is collected.
+              © {new Date().getFullYear()} Browser Fingerprint Test. All tests
+              run client-side. No data is collected.
             </p>
             <p className="mt-2">
-              Educational tool for understanding browser fingerprinting and online privacy.
+              Educational tool for understanding browser fingerprinting and
+              online privacy.
             </p>
           </div>
         </div>
