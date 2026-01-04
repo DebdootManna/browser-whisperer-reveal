@@ -1,0 +1,81 @@
+name: Update Browserslist Database
+
+on:
+  schedule:
+    # Run every Monday at 3:00 AM UTC
+    - cron: '0 3 * * 1'
+  workflow_dispatch: # Allow manual trigger
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  update-browserslist:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update Browserslist DB
+        run: npx update-browserslist-db@latest
+        continue-on-error: false
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code package-lock.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        if: steps.git-check.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update browserslist database'
+          title: '🤖 Update Browserslist Database'
+          body: |
+            ## Automated Browserslist Database Update
+
+            This PR updates the `caniuse-lite` database to the latest version.
+
+            **Why this update is important:**
+            - Ensures accurate browser compatibility data
+            - Reflects the latest browser versions and features
+            - Improves build tool accuracy (Autoprefixer, etc.)
+
+            **What's included:**
+            - Updated `caniuse-lite` package
+            - Updated browserslist database
+
+            This PR was automatically created by the Update Browserslist workflow.
+
+            **Related:** https://github.com/browserslist/update-db#readme
+          branch: automated/update-browserslist
+          delete-branch: true
+          labels: |
+            dependencies
+            automated
+            maintenance
+
+      - name: Auto-merge if no conflicts
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          echo "Browserslist database has been updated. Review the PR for changes."

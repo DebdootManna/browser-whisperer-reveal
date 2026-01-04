@@ -188,6 +188,28 @@ Rates your privacy protections based on:
 
 ---
 
+## 🤖 Automated Maintenance
+
+### Browserslist Auto-Updates
+
+This project includes **fully automated** browserslist database updates to ensure accurate browser compatibility data:
+
+- ✅ **Auto-updates on every build** - No more "caniuse-lite is X months old" warnings
+- ✅ **Post-install updates** - Automatically checks after `npm install`
+- ✅ **Weekly GitHub Actions** - Creates PRs for updates every Monday
+- ✅ **Vercel-ready** - Updates automatically on every deployment
+- ✅ **Zero configuration** - Works out of the box
+
+**Manual commands:**
+```bash
+npm run update-browserslist        # Check and update if needed
+npm run update-browserslist:force  # Force update
+```
+
+📚 **Full documentation:** See [BROWSERSLIST_AUTOMATION.md](BROWSERSLIST_AUTOMATION.md) and [.github/AUTOMATION_README.md](.github/AUTOMATION_README.md)
+
+---
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
@@ -239,6 +261,11 @@ npm run preview
 
 ```
 browser-whisperer-reveal/
+├── .github/
+│   ├── workflows/
+│   │   └── update-browserslist.yml  # Automated updates
+│   ├── dependabot.yml               # Dependency automation
+│   └── AUTOMATION_README.md         # Automation quick reference
 ├── src/
 │   ├── components/          # React components
 │   │   ├── ui/             # shadcn/ui components
@@ -258,7 +285,11 @@ browser-whisperer-reveal/
 │   ├── lib/                # Library code
 │   ├── App.tsx             # Main app component
 │   └── main.tsx            # Entry point
+├── scripts/
+│   └── update-browserslist.js       # Smart update script
 ├── public/                 # Static assets
+├── vercel.json             # Vercel configuration
+├── BROWSERSLIST_AUTOMATION.md       # Detailed automation docs
 └── package.json
 ```
 
