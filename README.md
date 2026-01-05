@@ -8,8 +8,6 @@
 
 A comprehensive, privacy-focused browser fingerprinting test tool inspired by [EFF's Cover Your Tracks](https://coveryourtracks.eff.org/), [BrowserScan.net](https://www.browserscan.net/), and [BrowserLeaks.com](https://browserleaks.com/).
 
-[Live Demo](#) | [Features](#features) | [Getting Started](#getting-started)
-
 </div>
 
 ---
